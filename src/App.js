@@ -156,7 +156,7 @@ const App = () => {
               </p>
             </div>
             <div style={topRight}>
-              <img style={img} src="/img/useLogo.webp"></img>
+              <img style={img} alt="use-logo" src="/img/useLogo.webp"></img>
               <p> {workedTotal / 8} dní</p>
             </div>
           </div>
