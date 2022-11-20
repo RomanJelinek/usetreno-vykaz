@@ -31,15 +31,9 @@ const App = () => {
   const [selectedYear, setSelectedYear] = useState(year);
   const [fullName, setFullName] = useState('');
   const [ico, setIco] = useState('');
-  const [signature, setSignature] = useState(null);
-
-  const handleSignatureEnd = () => {
-    setSignature(sigRef.current.toDataURL());
-  };
 
   const clearSignature = () => {
     sigRef.current.clear();
-    setSignature(null);
   };
 
   const daysInCurrentMonth = getDaysInMonth(selectedMonth, selectedYear);
@@ -47,7 +41,7 @@ const App = () => {
   const prefilledCalendar = daysInCurrentMonth.map((day) => {
     const weekDay = day.getDay();
     const dayDate = day.getDate();
-    const worked = weekDay == 6 || weekDay == 0 ? false : true;
+    const worked = Number(weekDay) === 6 || Number(weekDay) === 0 ? false : true;
     return {
       weekend: !worked,
       worked,
@@ -77,7 +71,7 @@ const App = () => {
         let isHolidayCheck = false;
         let holidayText = '';
         holidays.map((holiday) => {
-          if (holiday.dayNumber == day.day) {
+          if (Number(holiday.dayNumber) === Number(day.day)) {
             isHolidayCheck = true;
             holidayText = holiday.holidayName;
           }
@@ -216,7 +210,6 @@ const App = () => {
                 maxWidth={0.8}
                 minWidth={0.8}
                 ref={sigRef}
-                onEnd={handleSignatureEnd}
                 canvasProps={{
                   width: 200,
                   height: 100,
