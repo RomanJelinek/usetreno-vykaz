@@ -70,7 +70,7 @@ const App = () => {
       const updatedCalendar = calendarWithoutHolidays.map((day) => {
         let isHolidayCheck = false;
         let holidayText = '';
-        holidays.map((holiday) => {
+        holidays.forEach((holiday) => {
           if (Number(holiday.dayNumber) === Number(day.day)) {
             isHolidayCheck = true;
             holidayText = holiday.holidayName;
