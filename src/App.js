@@ -18,10 +18,11 @@ const getDaysInMonth = (month, year) =>
     .filter((v) => v.getMonth() === month - 1);
 
 const fetchHolidays = async (year, month, interval) => {
+  console.log(year, month, interval)
   const holidays = await axios.get(
-    `https://svatkyapi.cz/api/day/${year}-${('0' + month).slice(
+    `https://svatkyapi.cz/api/day/${year}-${('0' + String(month)).slice(
       -2
-    )}-01/interval/${interval}`
+    )}-01/interval/${String(interval)}`
   );
   return holidays.data;
 };
@@ -87,7 +88,7 @@ const App = () => {
       setCalendar(updatedCalendar);
     };
     handleChanges();
-  }, [selectedYear, selectedMonth, prefilledCalendar]);
+  }, [selectedYear, selectedMonth]);
 
   useEffect(() => {
     // fetchHolidays();
