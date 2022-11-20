@@ -93,7 +93,7 @@ const App = () => {
       setCalendar(updatedCalendar);
     };
     handleChanges();
-  }, [selectedYear, selectedMonth]);
+  }, [selectedYear, selectedMonth, prefilledCalendar]);
 
   useEffect(() => {
     // fetchHolidays();
@@ -156,7 +156,7 @@ const App = () => {
               </p>
             </div>
             <div style={topRight}>
-              <img style={img} alt="use-logo" src="/img/useLogo.webp"></img>
+              <img style={img} alt="ise-l" src="/img/useLogo.webp"></img>
               <p> {workedTotal / 8} dní</p>
             </div>
           </div>
