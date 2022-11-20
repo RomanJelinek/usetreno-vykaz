@@ -414,5 +414,3 @@ const inputRow = {
   width: '330px',
   justifyContent: 'space-between',
 };
-
-const bottomSection = { display: 'flex', justifyContent: 'space-between' };
