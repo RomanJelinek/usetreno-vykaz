@@ -36,6 +36,7 @@ const App = () => {
   const [selectedYear, setSelectedYear] = useState(year);
   const [fullName, setFullName] = useState('');
   const [ico, setIco] = useState('');
+  const [project, setProject] = useState('UCZ');
 
   const clearSignature = () => {
     sigRef.current.clear();
@@ -92,12 +93,13 @@ const App = () => {
       });
       setCalendar(updatedCalendar);
     };
+    const calenarStorage = JSON.parse(localStorage.getItem('calendar'));
+
+    // if (calenarStorage) setCalendar(calenarStorage);
+    // else
     handleChanges();
   }, [selectedYear, selectedMonth]);
 
-  useEffect(() => {
-    // fetchHolidays();
-  }, []);
   const workedTotal = calendar.reduce((accumulator, object) => {
     return accumulator + object.workedHours;
   }, 0);
@@ -132,6 +134,14 @@ const App = () => {
       return newState;
     });
   };
+
+  // const setLocalStorage = () => {
+  //   localStorage.setItem('fullName', fullName);
+  //   localStorage.setItem('ico', ico);
+  //   localStorage.setItem('selectedYear', selectedYear);
+  //   localStorage.setItem('selectedMonth', selectedMonth);
+  //   localStorage.setItem('calendar', JSON.stringify(calendar));
+  // };
 
   return (
     <div style={pdfWrapper}>
@@ -184,7 +194,7 @@ const App = () => {
                 <td style={{ width: '320px', padding: '0 2px' }}>
                   Popis činnosti
                 </td>
-                <td style={{ maxWidth: '30px' }}>Počet hodin</td>
+                <td style={{ width: '20px' }}>Počet hodin</td>
               </tr>
               {calendar.map((day) => {
                 return (
@@ -199,7 +209,7 @@ const App = () => {
                     <td>
                       {day.day}/{selectedMonth}/{selectedYear}
                     </td>
-                    <td>UCZ</td>
+                    <td>{project}</td>
                     <td style={{ padding: '0 2px' }}>{day.activity}</td>
                     <td>{day.workedHours}</td>
                   </tr>
@@ -246,6 +256,7 @@ const App = () => {
             <div>Year</div>
             <div>Fullname</div>
             <div>IČO</div>
+            <div>Project</div>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             <select
@@ -279,6 +290,7 @@ const App = () => {
             </select>
             <input type="text" onChange={(e) => setFullName(e.target.value)} />
             <input type="text" onChange={(e) => setIco(e.target.value)} />
+            <input type="text" value={project} onChange={(e) => setProject(e.target.value)} />
           </div>
         </div>
         <br />
@@ -342,6 +354,15 @@ const App = () => {
           );
         })}
         <br />
+        <br />
+
+        {/* <button onClick={setLocalStorage}>
+          Save data to the local storage
+        </button>
+        <button onClick={setLocalStorage}>Clear local storage</button>
+        <br />
+        <br /> */}
+
         <button onClick={clearSignature}>Clear signature</button>
         <br />
         <br />
