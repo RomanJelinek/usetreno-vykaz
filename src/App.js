@@ -18,13 +18,17 @@ const getDaysInMonth = (month, year) =>
     .filter((v) => v.getMonth() === month - 1);
 
 const fetchHolidays = async (year, month, interval) => {
-  console.log(year, month, interval)
-  const holidays = await axios.get(
-    `https://svatkyapi.cz/api/day/${year}-${('0' + String(month)).slice(
-      -2
-    )}-01/interval/${String(interval)}`
-  );
-  return holidays.data;
+  try {
+    const holidays = await axios.get(
+      `https://svatkyapi.cz/api/day/${year}-${('0' + String(month)).slice(
+        -2
+      )}-01/interval/${String(interval)}`
+    );
+    return holidays.data;
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
 };
 
 const App = () => {
@@ -42,7 +46,8 @@ const App = () => {
   const prefilledCalendar = daysInCurrentMonth.map((day) => {
     const weekDay = day.getDay();
     const dayDate = day.getDate();
-    const worked = Number(weekDay) === 6 || Number(weekDay) === 0 ? false : true;
+    const worked =
+      Number(weekDay) === 6 || Number(weekDay) === 0 ? false : true;
     return {
       weekend: !worked,
       worked,
@@ -214,7 +219,6 @@ const App = () => {
                 canvasProps={{
                   width: 200,
                   height: 100,
-                  className: 'sigCanvas',
                 }}
               />
               <div style={{ borderTop: '1px solid black', fontSize: '12px' }}>
