@@ -10,6 +10,7 @@ const years = [2022, 2023, 2024, 2025, 2026];
 const date = new Date();
 const month = date.getMonth();
 const year = date.getFullYear();
+const dayToday = date.getDate()
 
 const getDaysInMonth = (month, year) =>
   new Array(31)
@@ -221,6 +222,16 @@ const App = () => {
             <div
               style={{ width: '200px', marginLeft: '50px', marginTop: '10px' }}
             >
+              <div
+                style={{
+                  position: 'relative',
+                  bottom: -95,
+                  left: -30,
+                  zIndex: '100000',
+                  fontSize: 12,
+                  fontStyle: 'italic',
+                }}
+              >{`${dayToday}.${month + 1}.${year}`}</div>
               <SignatureCanvas
                 penColor="black"
                 maxWidth={0.8}
@@ -242,7 +253,7 @@ const App = () => {
                 marginRight: '50px',
               }}
             >
-              <div style={{ borderTop: '1px solid black', fontSize: '12px' }}>
+              <div style={{ borderTop: '1px solid black', fontSize: '12px', marginTop: "15px" }}>
                 datum a podpis za Ušetřeno.cz
               </div>
             </div>
@@ -290,7 +301,11 @@ const App = () => {
             </select>
             <input type="text" onChange={(e) => setFullName(e.target.value)} />
             <input type="text" onChange={(e) => setIco(e.target.value)} />
-            <input type="text" value={project} onChange={(e) => setProject(e.target.value)} />
+            <input
+              type="text"
+              value={project}
+              onChange={(e) => setProject(e.target.value)}
+            />
           </div>
         </div>
         <br />
