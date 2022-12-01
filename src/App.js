@@ -230,6 +230,7 @@ const App = () => {
                   zIndex: '100000',
                   fontSize: 12,
                   fontStyle: 'italic',
+                  display: "inline",
                 }}
               >{`${dayToday}.${month + 1}.${year}`}</div>
               <SignatureCanvas
