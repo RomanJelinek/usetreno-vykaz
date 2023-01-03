@@ -232,7 +232,7 @@ const App = () => {
                   fontStyle: 'italic',
                   display: "inline",
                 }}
-              >{`${dayToday}.${month + 1}.${year}`}</div>
+              >{`${dayToday}.${month}.${year}`}</div>
               <SignatureCanvas
                 penColor="black"
                 maxWidth={0.8}
