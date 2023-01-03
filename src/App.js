@@ -8,7 +8,7 @@ const months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 const years = [2022, 2023, 2024, 2025, 2026];
 
 const date = new Date();
-const month = date.getMonth();
+const month = date.getMonth() + 1;
 const year = date.getFullYear();
 const dayToday = date.getDate()
 
